@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAIQR-CU-22: Registro de Interacción Institucional</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- HEADER INSTITUCIONAL -->
+    <header class="main-header">
+        <div class="header-content">
+            <div class="header-logo">
+                <div class="logo-box">
+                    <span class="icon">📄</span>
+                </div>
+                <div class="logo-text">
+                    <h1>MAIQR-CU-22</h1>
+                    <p>Registro de Interacción Institucional</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="user-info">
+                    <span id="headerUserName">Juan Pérez García</span>
+                </div>
+                <div class="role-badge" id="roleBadge">
+                    <span id="roleIcon">🛡️</span>
+                    <span id="roleText">Administrador</span>
+                </div>
+                <button id="toggleRoleBtn" class="link-btn">Cambiar Rol</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- ALERTAS -->
+        <div id="successMessage" class="alert alert-success hidden">
+            <span class="alert-icon">✅</span>
+            <p id="successText">¡Acción realizada con éxito!</p>
+        </div>
+
+        <div id="pendingAlert" class="alert alert-warning hidden">
+            <span class="alert-icon">⚠️</span>
+            <p><strong>ATENCIÓN:</strong> Este trámite está <strong>PENDIENTE DE ACUSE</strong>. Debes subir la evidencia para finalizar.</p>
+        </div>
+
+        <!-- SECCIÓN: LISTADO DE TRÁMITES -->
+        <section id="listView" class="view">
+            <div class="search-bar-container">
+                <div class="title-with-icon">
+                    <span class="view-icon">📂</span>
+                    <h2>Listado de Trámites (Folio Único)</h2>
+                </div>
+                <div class="search-input-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="searchInput" placeholder="Buscar por folio o asunto...">
+                </div>
+            </div>
+
+            <div id="tramitesGrid" class="grid-container">
+                <!-- Se llenará dinámicamente -->
+            </div>
+
+            <div id="emptyList" class="empty-state hidden">
+                <span class="empty-icon">📂</span>
+                <p>No se encontraron trámites que coincidan con la búsqueda.</p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: FORMULARIO DE REGISTRO CON VISTA PREVIA (DOS ETAPAS) -->
+        <section id="formView" class="view hidden">
+            <button id="backToList" class="back-btn">
+                <span>←</span> Volver al listado
+            </button>
+
+            <div class="split-layout">
+                <!-- COLUMNA IZQUIERDA: FORMULARIO -->
+                <div class="card form-column">
+                    <div class="card-header navy-header">
+                        <div class="card-header-main">
+                            <h2 id="formStageTitle">Etapa 1: Generación</h2>
+                            <p class="folio-info">Folio: <strong id="formFolio">FUI-2024-001</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <!-- FORMULARIO DE GENERACIÓN (ETAPA 1) -->
+                        <form id="generationForm" class="stage-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>🏢 Dependencia</label>
+                                    <input type="text" id="formDependencia" readonly class="readonly-input">
+                                </div>
+                                <div class="form-group">
+                                    <label>📄 No. Oficio</label>
+                                    <input type="text" id="numOficio" readonly class="readonly-input">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>👤 Encargado</label>
+                                    <input type="text" id="formEncargado" readonly class="readonly-input">
+                                </div>
+                                <div class="form-group">
+                                    <label>📅 Fecha</label>
+                                    <input type="date" id="fechaDocumento" readonly class="readonly-input">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>🛡️ Asesor</label>
+                                    <input type="text" id="formAsesor" readonly class="readonly-input">
+                                </div>
+                                <div class="form-group">
+                                    <label>👤 Elaboró</label>
+                                    <input type="text" id="formUser" readonly class="readonly-input">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>📝 Asunto <span class="required">*</span></label>
+                                <textarea id="cuerpoContestacion" rows="5" required placeholder="Describe el asunto de la interacción..."></textarea>
+                            </div>
+
+                            <div class="form-footer">
+                                <button type="submit" id="generateBtn" class="btn btn-primary gold-btn full-width">
+                                    <span>📥</span> Generar y Descargar Contestación
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- FORMULARIO DE CIERRE (ETAPA 2) -->
+                        <form id="closingForm" class="stage-form hidden">
+                            <div class="stage-alert">
+                                <p><strong>ESTADO:</strong> Esperando Acuse Digitalizado</p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>📤 Carga de Evidencia (PDF) <span class="required">*</span></label>
+                                <div id="dropZone" class="drop-zone">
+                                    <input type="file" id="fileUpload" accept=".pdf" class="hidden-input">
+                                    <div class="drop-zone-content" id="dropZoneContent">
+                                        <span class="upload-icon">📄</span>
+                                        <p>Haz clic para subir el acuse firmado</p>
+                                        <small>Solo archivos PDF (Máx. 10MB)</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-footer">
+                                <button type="submit" id="finalizeBtn" class="btn btn-primary gold-btn full-width">
+                                    <span>🚀</span> Guardar 
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- COLUMNA DERECHA: VISTA PREVIA (DOCUMENTO) -->
+                <div class="preview-column">
+                    <div class="document-preview" id="documentPreview">
+                        <div class="doc-header">
+                            <div class="doc-logo">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Coat_of_arms_of_Zacatecas.svg/1200px-Coat_of_arms_of_Zacatecas.svg.png" alt="Logo">
+                                <div class="doc-logo-text">
+                                    <p>COMISIÓN ESTATAL</p>
+                                    <p>DE LA DEFENSA DEL</p>
+                                    <p>CONTRIBUYENTE</p>
+                                    <small>ESTADO DE ZACATECAS</small>
+                                </div>
+                            </div>
+                            <div class="doc-meta">
+                                <p><strong id="prevOficio">MEMORÁNDUM-...</strong></p>
+                                <p><strong>Asunto:</strong> <span id="prevAsuntoShort">---</span></p>
+                                <p>Guadalupe, Zacatecas, a <span id="prevFecha">---</span>.</p>
+                            </div>
+                        </div>
+
+                        <div class="doc-recipient">
+                            <p><strong id="prevEncargado">---</strong></p>
+                            <p><strong id="prevDependencia">---</strong></p>
+                            <p><strong>P R E S E N T E.</strong></p>
+                        </div>
+
+                        <div class="doc-body">
+                            <p id="prevBody">---</p>
+                        </div>
+
+                        <div class="doc-signature">
+                            <p>Atentamente</p>
+                            <div class="signature-line"></div>
+                            <p><strong id="prevUser">Juan Pérez García</strong></p>
+                            <p id="prevAsesor">---</p>
+                            <small>(Elaboró)</small>
+                        </div>
+
+                        <div class="doc-footer">
+                            <img src="https://www.zacatecas.gob.mx/wp-content/uploads/2021/09/footer-zac.png" alt="Footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2024 MAIQR - Sistema de Gestión de Trámites Institucionales</p>
+        <p><strong>Módulo de Interacción Institucional v1.0</strong></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
