@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGCQAL - Generación de Memorándum</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <h1>SIGCQAL</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-item">
+                    <i data-lucide="mail"></i>
+                    <span>Correspondencia</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item logout">
+                    <i data-lucide="log-out"></i>
+                    <span>Cerrar Sesión</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="header">
+                <div class="header-breadcrumb">
+                    <span>Memorándum</span>
+                </div>
+                <div class="header-user">
+                    <div class="user-info">
+                        <span class="user-name">Juan Pérez García</span>
+                        <span class="user-role">Administrador</span>
+                    </div>
+                    <div class="user-avatar">
+                        <i data-lucide="user"></i>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-body">
+                <h2 class="page-title">Generación de memorándum</h2>
+
+                <div class="form-preview-container">
+                    <!-- Form Section -->
+                    <div class="form-section">
+                        <div class="form-grid">
+                            <div class="form-group col-8">
+                                <label>Dependencia</label>
+                                <input type="text" value="DIRECCIÓN ADMINISTRATIVA DE LA COMISIÓN ESTATAL DE LA DEFENSA DEL CONTRIBUYENTE" readonly>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>No. Oficio</label>
+                                <input type="text" value="SFP/SC/DCP/0040/2026" readonly>
+                            </div>
+                            
+                            <div class="form-group col-12">
+                                <label>Asunto</label>
+                                <textarea rows="3">Dictaminación de estados financieros del ejercicio 2025</textarea>
+                            </div>
+
+                            <div class="form-group col-12">
+                                <label>Observaciones</label>
+                                <textarea rows="2"></textarea>
+                            </div>
+
+                            <div class="form-group col-6">
+                                <label>Elaboró</label>
+                                <select id="elaboro-select">
+                                    <option value="">Seleccione</option>
+                                    <option value="el Área de Programación">Área de Programación</option>
+                                    <option value="la Dirección General">Dirección General</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Dependencia</label>
+                                <select id="dependencia-elaboro-select">
+                                    <option value="">Seleccione</option>
+                                    <option value="de esta Comisión">de esta Comisión</option>
+                                    <option value="de la Secretaría">de la Secretaría</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-6">
+                                <label>Firmante</label>
+                                <select>
+                                    <option value="Lic. José David Rivera Sesma." selected>Lic. José David Rivera Sesma.</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Dependencia</label>
+                                <select>
+                                    <option value="Encargado de la Comisión Estatal de la Defensa del Contribuyente." selected>Encargado de la Comisión Estatal de la Defensa del Contribuyente.</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-6">
+                                <label>Plantilla</label>
+                                <select>
+                                    <option value="">Seleccione</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-12">
+                                <div class="formatting-toolbar">
+                                    <button class="tool-btn"></button>
+                                    <button class="tool-btn"></button>
+                                    <button class="tool-btn"></button>
+                                    <button class="tool-btn"></button>
+                                    <button class="tool-btn"></button>
+                                </div>
+                                <textarea class="memo-content" rows="10"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preview Section -->
+                    <div class="preview-section">
+                        <div class="memo-document">
+                            <div class="memo-header">
+                                <div class="memo-logo">
+                                    <div class="logo-circle"></div>
+                                    <div class="logo-text">
+                                        COMISIÓN ESTATAL DE LA DEFENSA DEL CONTRIBUYENTE ESTADO DE ZACATECAS
+                                    </div>
+                                </div>
+                                <div class="memo-meta">
+                                    <strong>MEMORÁNDUM-DG-05/2026.</strong>
+                                    <p><strong>Asunto:</strong> Dictaminación de estados financieros del ejercicio 2025.</p>
+                                    <p>Guadalupe, Zacatecas, a 23 de enero de 2026.</p>
+                                </div>
+                            </div>
+
+                            <div class="memo-recipient">
+                             
+                                <strong>P R E S E N T E.</strong>
+                            </div>
+
+                            <div class="memo-body">
+                                <p>De conformidad al oficio marcado con el Número SFP/SC/DCP/0040/2026 emitido por...</p>
+                            </div>
+
+                            <div class="memo-footer-content">
+                                <p><strong>Atentamente</strong></p>
+                                <p><strong>Lic. José David Rivera Sesma.</strong><br>
+                                Encargado de la Comisión Estatal de la Defensa del Contribuyente.</p>
+                                <p class="ccp">C.c.p.- Archivo.</p>
+                            </div>
+
+                            <div class="memo-footer-graphics">
+                                <div class="wave-container">
+                                    <div class="wave-footer"></div>
+                                    <div class="footer-address">
+                                        Boulevard José López Portillo, número 60, Dependencias Federales, C.P. 98600, Guadalupe, Zac. Tel. (492)9279703.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn btn-success">Generar Memorándum</button>
+                    <button class="btn btn-danger" onclick="window.location.href='index.html'">Cancelar</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGCQAL - Correspondencia</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo">SIGCQAL</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-item active">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>Correspondencia</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item logout">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Cerrar Sesión</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="user-info">
+                    <div class="user-text">
+                        <span class="user-name">Juan Pérez García</span>
+                        <span class="user-role">Administrador</span>
+                    </div>
+                    <div class="user-avatar">
+                        <i class="fa-solid fa-circle-user"></i>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Body -->
+            <div class="page-container">
+                <nav class="breadcrumb">
+                    <span>Correspondencia</span>
+                </nav>
+
+                <h2 class="page-title">Correspondencia</h2>
+
+                <div class="search-filter-container">
+                    <div class="search-bar">
+                        <input type="text" placeholder="">
+                    </div>
+                    <button class="filter-btn">
+                        <i class="fa-solid fa-filter"></i>
+                    </button>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No. Oficio</th>
+                                <th>Dependencia</th>
+                                <th>Asunto</th>
+                                <th>Observaciones</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-bold">SFP/SC/DCP/0003/2025</td>
+                                <td class="text-center">SECRETARIA DE LA FUNCIÓN PÚBLICA</td>
+                                <td>SOLICITUD DE CONSIDERAR DENTRO DEL PRESUPUESTO 2025, LOS RECURSOS NECESARIOS PARA LA CONTRATACION DE DESPACHO EXTERNO POR PARTE DE LA SECRETARIA DE LA FUNCION PUBLICA.</td>
+                                <td>SE TURNO A LA DIRECCION ADMINISTRATIVA CON FECHA 06/01/2025, PARA SU ATENCION.</td>
+                                <td class="actions-cell">
+                                    <div class="action-dots">
+                                        <span></span><span></span><span></span>
+                                        <div class="action-dropdown">
+                                            <a href="bitacora.html"><i class="fa-solid fa-magnifying-glass"></i> Ver Bitácora</a>
+                                            <a href="#"><i class="fa-solid fa-file-lines"></i> Ver documento</a>
+                                            <a href="#"><i class="fa-solid fa-file-pdf"></i> Descargar PDF</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-bold">DESP/SAVD/3111/2024</td>
+                                <td class="text-center">CONSEJO DE ARMONIZACIÓN CONTABLE DEL ESTADO DE ZACATECAS.</td>
+                                <td>SE INFORMA QUE CON FECHA 13 DE DICIEMBRE DEL 2024 EN EL DIARIO OFICIAL DE LA FEDERACIÓN, SE PUBLICA ACUERDO POR EL QUE SE REFORMA Y ADICIONA EL MANUAL DE CONTABILIDAD GUBERNAMENTAL</td>
+                                <td>SE TURNÓ A LA DIRECCIÓN ADMINISTRATIVA CON FECHA 07/01/2025, PARA CONOCIMIENTO</td>
+                                <td class="actions-cell">
+                                    <button class="btn-primary" onclick="window.location.href='bitacora.html'">Ver Bitácora</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
