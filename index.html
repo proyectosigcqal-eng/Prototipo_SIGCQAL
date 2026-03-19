@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAIQR-CU-28: Administrar Catálogo de Convenios</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- HEADER INSTITUCIONAL -->
+    <header class="main-header">
+        <div class="header-content">
+            <div class="header-logo">
+                <div class="logo-box">
+                    <span class="icon">📜</span>
+                </div>
+                <div class="logo-text">
+                    <h1>MAIQR-CU-28</h1>
+                    <p>Administrar Catálogo de Convenios</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="role-badge" id="roleBadge">
+                    <span id="roleIcon">🛡️</span>
+                    <span id="roleText">Administrador</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- MENSAJE DE ÉXITO -->
+        <div id="successMessage" class="alert alert-success hidden">
+            <span class="alert-icon">✅</span>
+            <p id="successText">¡Operación realizada con éxito!</p>
+        </div>
+
+        <!-- SECCIÓN: LISTADO DE MUNICIPIOS -->
+        <section id="listView" class="view">
+            <div class="section-header">
+                <div class="title-with-icon">
+                    <span class="view-icon">🏢</span>
+                    <h2>Catálogo de Municipios</h2>
+                </div>
+                <button id="addMunicipioBtn" class="btn btn-primary gold-btn">
+                    + Agregar Municipio
+                </button>
+            </div>
+
+            <!-- FILTRO DE PESTAÑAS (SEGMENTED CONTROL) -->
+            <div class="segmented-control-wrapper">
+                <div class="segmented-control">
+                    <button class="tab-btn active" data-status="Activo">
+                        Activos <span class="badge" id="countActivos">0</span>
+                    </button>
+                    <button class="tab-btn" data-status="Inactivo">
+                        Inactivos <span class="badge" id="countInactivos">0</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="data-table" id="municipiosTable">
+                    <thead>
+                        <tr>
+                            <th>Municipio</th>
+                            <th class="actions-column">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="municipiosList">
+                        <!-- Se llenará dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="emptyList" class="empty-state hidden">
+                <span class="empty-icon">🏢</span>
+                <p>No se encontraron municipios registrados.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL PARA AGREGAR/EDITAR MUNICIPIO -->
+    <div id="municipioModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Agregar Nuevo Municipio</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="municipioForm">
+                <div class="modal-body">
+                    <input type="hidden" id="municipioId">
+                    <div class="form-group">
+                        <label for="municipioNombre">Seleccionar Municipio <span class="required">*</span></label>
+                        <select id="municipioNombre" name="nombre" required>
+                            <option value="" disabled selected>Seleccione un municipio...</option>
+                            <option value="Guadalupe">Guadalupe</option>
+                            <option value="Zacatecas">Zacatecas</option>
+                            <option value="Fresnillo">Fresnillo</option>
+                            <option value="Jerez">Jerez</option>
+                            <option value="Calera">Calera</option>
+                            <option value="Sombrerete">Sombrerete</option>
+                            <option value="Río Grande">Río Grande</option>
+                        </select>
+                        <small class="error-text hidden" id="errorNombre">Debe seleccionar un municipio.</small>
+                        <small class="error-text hidden" id="errorDuplicado">Este municipio ya se encuentra registrado.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="municipioEstatus">Estatus <span class="required">*</span></label>
+                        <select id="municipioEstatus" name="estatus" required>
+                            <option value="Activo">Activo</option>
+                            <option value="Inactivo">Inactivo</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-modal">CANCELAR</button>
+                    <button type="submit" id="saveBtn" class="btn btn-primary gold-btn">GUARDAR CAMBIOS</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL DE CONFIRMACIÓN DE ELIMINACIÓN -->
+    <div id="deleteModal" class="modal hidden">
+        <div class="modal-content mini-modal">
+            <div class="modal-header danger-header">
+                <h2>Eliminar Municipio</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de que deseas eliminar el municipio <strong id="deleteTargetName"></strong>?</p>
+                <p class="warning-text"><small>Esta acción no se puede deshacer.</small></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary close-modal">CANCELAR</button>
+                <button type="button" id="confirmDeleteBtn" class="btn btn-danger">ELIMINAR</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 MAIQR - Sistema de Gestión de Catálogos</p>
+        <p><strong>Administración de Catálogo de Convenios v1.0</strong></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
