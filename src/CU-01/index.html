@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGCQAL - MC-CU-01 Registrar Correspondencia de Entrada</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <h1>SIGCQAL</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-item active">
+                    <i data-lucide="inbox"></i>
+                    <span>Entrada</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item logout">
+                    <i data-lucide="log-out"></i>
+                    <span>Cerrar Sesión</span>
+                </a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <button class="icon-btn sidebar-toggle" id="sidebarToggle" type="button" aria-label="Abrir menú">
+                    <i data-lucide="menu"></i>
+                </button>
+                <div class="header-breadcrumb">
+                    <span>Correspondencia Externa / Entrada</span>
+                </div>
+                <div class="header-user">
+                    <div class="user-info">
+                        <span class="user-name">María López</span>
+                        <span class="user-role">Secretaría</span>
+                    </div>
+                    <div class="user-avatar">
+                        <i data-lucide="user"></i>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-body">
+                <div class="alert hidden" id="alert" role="alert" aria-live="polite"></div>
+
+                <div class="page-head">
+                    <h2 class="page-title">MC-CU-01: Registrar Correspondencia de Entrada</h2>
+                    <div class="page-subtitle">Digitalización y Registro de Correspondencia Externa</div>
+                </div>
+
+                <div class="form-preview-container">
+                    <section class="form-section">
+                        <div class="section-head">
+                            <h3 class="section-title">Captura</h3>
+                            <div class="chip chip-info" id="chipPreviewRequired">Previsualización requerida</div>
+                        </div>
+
+                        <form id="correspondenciaForm" novalidate>
+                            <div class="form-grid">
+                                <div class="form-group col-4">
+                                    <label for="folio">Folio</label>
+                                    <input id="folio" name="folio" type="text" readonly>
+                                </div>
+
+                                <div class="form-group col-8">
+                                    <label for="remitente">Remitente</label>
+                                    <input id="remitente" name="remitente" type="text" autocomplete="off" placeholder="Nombre de la persona o institución">
+                                    <div class="field-error" id="errorRemitente"></div>
+                                </div>
+
+                                <div class="form-group col-12">
+                                    <label for="asunto">Asunto</label>
+                                    <textarea id="asunto" name="asunto" rows="4" placeholder="Describe el asunto del oficio"></textarea>
+                                    <div class="field-error" id="errorAsunto"></div>
+                                </div>
+
+                                <div class="form-group col-6">
+                                    <label for="fechaOficio">Fecha del Oficio</label>
+                                    <input id="fechaOficio" name="fechaOficio" type="date">
+                                    <div class="field-error" id="errorFechaOficio"></div>
+                                </div>
+
+                                <div class="form-group col-6">
+                                    <label for="procedencia">Procedencia</label>
+                                    <select id="procedencia" name="procedencia">
+                                        <option value="">Selecciona una opción</option>
+                                        <option value="Dependencia estatal">Dependencia estatal</option>
+                                        <option value="Dependencia federal">Dependencia federal</option>
+                                        <option value="Gobierno municipal">Gobierno municipal</option>
+                                        <option value="Organismo autónomo">Organismo autónomo</option>
+                                        <option value="Particular">Particular</option>
+                                        <option value="Otra">Otra</option>
+                                    </select>
+                                    <div class="field-error" id="errorProcedencia"></div>
+                                </div>
+
+                                <div class="form-group col-12">
+                                    <label for="documentoPdf">Documento digitalizado (PDF)</label>
+                                    <input id="documentoPdf" name="documentoPdf" type="file" accept="application/pdf">
+                                    <div class="field-help">Obligatorio. Solo PDF.</div>
+                                    <div class="field-error" id="errorDocumentoPdf"></div>
+                                </div>
+
+                                <div class="form-group col-12">
+                                    <label for="anexosPdf">Anexos (PDF)</label>
+                                    <input id="anexosPdf" name="anexosPdf" type="file" accept="application/pdf" multiple>
+                                    <div class="field-help">Opcional. Puedes seleccionar múltiples archivos PDF.</div>
+                                    <div class="field-error" id="errorAnexosPdf"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-primary" id="previewBtn">
+                                    <i data-lucide="eye"></i>
+                                    <span>Previsualizar</span>
+                                </button>
+                                <button type="submit" class="btn btn-success" id="saveBtn" disabled>
+                                    <i data-lucide="save"></i>
+                                    <span>Guardar</span>
+                                </button>
+                                <button type="button" class="btn btn-secondary" id="clearBtn">
+                                    <i data-lucide="eraser"></i>
+                                    <span>Limpiar</span>
+                                </button>
+                            </div>
+                        </form>
+                    </section>
+
+                    <section class="preview-section">
+                        <div class="section-head">
+                            <h3 class="section-title">Previsualización</h3>
+                            <div class="chip chip-warning" id="previewStatus">Pendiente</div>
+                        </div>
+                        <div class="preview-body" id="previewBody">
+                            <div class="preview-empty">
+                                <div class="preview-empty-title">Previsualización pendiente</div>
+                                <div class="preview-empty-text">Completa la captura y selecciona el PDF para habilitar el guardado.</div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="overlay hidden" id="overlay"></div>
+
+    <div class="modal hidden" id="pdfModal" role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle">
+        <div class="modal-card">
+            <div class="modal-head">
+                <div class="modal-title" id="pdfModalTitle">Documento</div>
+                <button class="icon-btn" id="pdfModalClose" type="button" aria-label="Cerrar">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <iframe id="pdfFrame" title="Previsualización PDF"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casos de Prueba · MC-CU-12</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="sidebar-logo"><h1>SIGCQAL</h1></div>
+      <nav class="sidebar-nav">
+        <a href="index.html" class="nav-item"><i data-lucide="arrow-left"></i><span>Volver</span></a>
+        <a class="nav-item active"><i data-lucide="check-square"></i><span>Casos de Prueba</span></a>
+      </nav>
+    </aside>
+    <main class="main-content">
+      <header class="header">
+        <div class="header-breadcrumb">Casos de Prueba · MC-CU-12</div>
+        <div class="header-user">
+          <div class="user-info"><span class="user-name">Administrador</span><span class="user-role">Administrador</span></div>
+          <div class="user-avatar"><i data-lucide="user"></i></div>
+        </div>
+      </header>
+      <div class="content-body">
+        <section class="card">
+          <div class="section-head"><h3 class="section-title">Pruebas funcionales</h3></div>
+          <ol>
+            <li><strong>Selección de folio</strong>: seleccionar MO-2026-000123; verificar chip de estado y habilitación del formulario.</li>
+            <li><strong>Validación de prioridad</strong>: dejar prioridad en blanco; debe mostrarse error y botón deshabilitado.</li>
+            <li><strong>Validación de justificación</strong>: ingresar menos de 10 caracteres; debe mostrar error.</li>
+            <li><strong>Regla de retraso</strong>: seleccionar MO-2026-000125 (3 días). Debe impedir envío por regla &gt; 5.</li>
+            <li><strong>Envío de aviso</strong>: con folio válido, prioridad Alta y justificación suficiente; debe registrar auditoría “Alerta generada”.</li>
+            <li><strong>Notificación</strong>: verificar mensaje “Aviso enviado”.</li>
+            <li><strong>Confirmación automática</strong>: en ~1.5s debe aparecer auditoría “Recepción confirmada (automática)”.</li>
+            <li><strong>Confirmación manual</strong>: usar “Confirmar recepción”; debe registrarse evento “Recepción confirmada (manual)”.</li>
+          </ol>
+        </section>
+        <section class="card">
+          <div class="section-head"><h3 class="section-title">Pruebas de UI/UX y errores</h3></div>
+          <ul>
+            <li>Responsividad: colapsar sidebar en móvil y verificar overlay.</li>
+            <li>Mensajes descriptivos en español para errores y confirmaciones.</li>
+            <li>Persistencia local: refrescar página y verificar que auditoría permanece.</li>
+          </ul>
+        </section>
+      </div>
+    </main>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

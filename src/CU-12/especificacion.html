@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Especificación Técnica · MC-CU-12</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="sidebar-logo"><h1>SIGCQAL</h1></div>
+      <nav class="sidebar-nav">
+        <a href="index.html" class="nav-item"><i data-lucide="arrow-left"></i><span>Volver</span></a>
+        <a class="nav-item active"><i data-lucide="file-text"></i><span>Especificación</span></a>
+      </nav>
+    </aside>
+    <main class="main-content">
+      <header class="header">
+        <div class="header-breadcrumb">Especificación Técnica · MC-CU-12</div>
+        <div class="header-user">
+          <div class="user-info"><span class="user-name">Administrador</span><span class="user-role">Administrador</span></div>
+          <div class="user-avatar"><i data-lucide="user"></i></div>
+        </div>
+      </header>
+      <div class="content-body">
+        <section class="card">
+          <div class="section-head"><h3 class="section-title">1. Descripción</h3></div>
+          <p>El caso de uso MC-CU-12 permite al Administrador seleccionar un folio con retraso &gt; 5 días y generar un aviso digital con justificación y prioridad, enviando notificación al área responsable mediante el sistema de mensajería interna. Se registra auditoría con fecha/hora y usuario, y se confirma la recepción.</p>
+        </section>
+        <section class="card">
+          <div class="section-head"><h3 class="section-title">2. Actores</h3></div>
+          <ul>
+            <li><strong>Administrador</strong>: Inicia la solicitud, define prioridad y justificación.</li>
+            <li><strong>Mensajería Interna</strong>: Recibe el aviso y confirma recepción.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <div class="section-head"><h3 class="section-title">3. Reglas de negocio</h3></div>
+          <ul>
+            <li>Solo perfiles con rol Administrador pueden enviar avisos.</li>
+            <li>El folio debe tener más de 5 días de retraso.</li>
+            <li>La justificación debe tener al menos 10 caracteres.</li>
+            <li>Se registra auditoría para alta de aviso y confirmación de recepción.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <div class="section-head"><h3 class="section-title">4. Flujo principal</h3></div>
+          <ol>
+            <li>Administrador visualiza folios con retraso y selecciona uno.</li>
+            <li>Captura justificación y prioridad.</li>
+            <li>El sistema valida permisos y regla de retraso &gt; 5 días.</li>
+            <li>Se genera el aviso digital y se notifica a Mensajería Interna.</li>
+            <li>Se registra auditoría y se confirma recepción (automática o manual).</li>
+          </ol>
+        </section>
+        <section class="card">
+          <div class="section-head"><h3 class="section-title">5. Datos</h3></div>
+          <p>Ver <a href="sql/cu12_schema.sql" target="_blank">Scripts SQL</a> para tablas folios, alertas y auditoría; datos de prueba realistas incluidos.</p>
+        </section>
+        <section class="card">
+          <div class="section-head"><h3 class="section-title">6. Diseño</h3></div>
+          <ul>
+            <li>Arquitectura MVC en front-end: Model (localStorage), View (DOM), Controller (eventos/reglas).</li>
+            <li>UI responsiva consistente con prototipos existentes.</li>
+            <li>Manejo de errores con mensajes descriptivos en español.</li>
+          </ul>
+          <p>Diagrama de secuencia: <a href="diagrams/sequence.svg" target="_blank">Abrir</a></p>
+        </section>
+        <section class="card">
+          <div class="section-head"><h3 class="section-title">7. Consideraciones de demo</h3></div>
+          <ul>
+            <li>Integración de mensajería simulada mediante almacenamiento local.</li>
+            <li>Es posible exportar esta página a PDF para distribución.</li>
+          </ul>
+        </section>
+      </div>
+    </main>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>
